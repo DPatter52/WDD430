@@ -1,10 +1,40 @@
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <h3>I'm in the AppComponent!</h3>
-            <hr>
-            <app-servers></app-servers>
-        </div>
-    </div>
-</div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>I'm in the AppComponent!</h3>
+      <hr />
+      <!-- <app-servers></app-servers> -->
+      <!-- <div app-servers></div> -->
+      <div class="app-servers"></div>
+      <hr />
+      <app-warning-alert></app-warning-alert>
+      <app-success-alert></app-success-alert>
+      <hr />
+      <p>Assignment: Data & Event Binding</p>
+      <label>Username</label>
+      <input type="text" class="form-control" [(ngModel)]="serverUsername" />
+      <p>{{ serverUsername }}</p>
+      <button
+        class="btn btn-primary"
+        [disabled]="serverUsername === ''"
+        (click)="serverUsername = ''"
+      >
+        Reset Username
+      </button>
 
+      <hr />
+      <p>Assignment Directives</p>
+      <label></label>
+      <!-- <button class="btn btn primary" (click)="showSecret = !showSecret">Toggle Display</button> -->
+      <button class="btn btn primary" (click)="toggleDisplay()">
+        Toggle Display
+      </button>
+      <p *ngIf="showSecret === true">Secret Password = tuna</p>
+      <div 
+      *ngFor="let logItem of log; let i = index"
+      [ngStyle]="{backgroundColor: i >= 4 ? 'blue': 'transparent'}"
+      [ngClass]="{'white-text': i >= 4}"
+      >{{ logItem }}</div>
+    </div>
+  </div>
+</div>
