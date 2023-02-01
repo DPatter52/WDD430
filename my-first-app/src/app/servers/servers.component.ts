@@ -14,7 +14,7 @@ export class ServersComponent implements OnInit{
   serverCreationStatus = "No server was created.";
   serverName = 'testserver';
   serverCreated = false;
-  servers = ['Testserver', 'Testserver 2'];
+  servers: any = [];
   
 
   constructor(){
@@ -26,10 +26,13 @@ export class ServersComponent implements OnInit{
   ngOnInit() {
    } 
 
-  onCreateServer() {
-    this.serverCreated = true;
-    this.servers.push(this.serverName);
-    this.serverCreationStatus = 'Server was created, name is ' + this.serverName;
+   onAddServer() {
+    this.servers.push('Another Server');
+  }
+  
+  onRemoveServer(id: number) {
+    const position = id + 1;
+    this.servers.splice(position, 1);
   }
 
 

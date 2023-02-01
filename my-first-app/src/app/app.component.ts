@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServersComponent } from './servers/servers.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent {
   serverUsername = "";
   showSecret = false;
   log: any = [];
+  servers: any = [];
 
   onUpdateServerUsername(event: any) {
     this.serverUsername = (<HTMLInputElement>event.target).value;
@@ -23,5 +25,6 @@ export class AppComponent {
     this.showSecret = !this.showSecret;
     this.log.push(new Date());
   }
+
   
 }
