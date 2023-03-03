@@ -5,8 +5,8 @@ import { Document } from '../document.model';
 @Component({
   selector: 'app-document-detail',
   templateUrl: './document-detail.component.html',
-  styleUrls: ['./document-detail.component.css']
+  styleUrls: ['./document-detail.component.css'],
 })
 export class DocumentDetailComponent {
-  @Input () document: Document;
+  @Input() document: Document;
 }

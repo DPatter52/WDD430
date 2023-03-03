@@ -1,27 +1,24 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 import { Document } from '../document.model';
+import { DocumentService } from '../document.service';
 
 @Component({
   selector: 'app-document-list',
   templateUrl: './document-list.component.html',
-  styleUrls: ['./document-list.component.css']
+  styleUrls: ['./document-list.component.css'],
 })
 export class DocumentListComponent {
-  @Output() documentWasSelected = new EventEmitter<Document>();
+  documents: Document[] = [];
 
-  documents: Document[] = [
-    new Document('1', 'Document1', 'This is document 1', 'www.randomdocument1.com'),
-    new Document('2', 'Document2', 'This is document 2', 'www.randomdocument2.com'),
-    new Document('3', 'Document3', 'This is document 3', 'www.randomdocument3.com'),
-    new Document('4', 'Document4', 'This is document 4', 'www.randomdocument4.com')
-  ]
+  constructor(private documentService: DocumentService) {}
 
-  constructor() {
-
+  ngOnInit() {
+    this.documents = this.documentService.getDocuments();
   }
 
   onDocumentSelected(document: Document) {
-    this.documentWasSelected.emit(document);
+    this.documentService.documentSelectedEvent.emit(document);
   }
+
 }
