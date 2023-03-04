@@ -1,3 +1,8 @@
-<a class="list-group-item clearfix documentDiv" (click)="onSelected()">
-    {{document.name}}
-  </a>
+<a
+  RouterLinkActive="active"
+  [routerLink]="[document.id]"
+  class="list-group-item clearfix documentDiv"
+  style="cursor: pointer"
+>
+  {{ document.name }}
+</a>

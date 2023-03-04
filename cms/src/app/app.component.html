@@ -1,11 +1,9 @@
-<app-header (featureSelected)="onNavigate($event)"></app-header>
+<app-header></app-header>
 
 <div class="container pull-left">
   <div class="row">
     <div class="col-md-12">
-      <app-contacts *ngIf="loadedFeature === 'contact'"></app-contacts>
-      <app-documents *ngIf="loadedFeature === 'document'"></app-documents>
-      <app-messages *ngIf="loadedFeature === 'message'"></app-messages>
-    </div>    
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

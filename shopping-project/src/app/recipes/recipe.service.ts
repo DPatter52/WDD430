@@ -9,7 +9,7 @@ export class RecipeService {
 
   private recipes: Recipe[] = [
     new Recipe(
-      'Tasy Schitzel',
+      'Tasty Schitzel',
       'This is a test desc.',
       'https://assets.bonappetit.com/photos/62bf35ae872a6cfbb260f286/2:3/w_1600,h_2400,c_limit/0701-tj-recipe-potato-v2.jpg',
       [new Ingredient('Meat', 1), new Ingredient('French Fries', 20)]
@@ -26,6 +26,10 @@ export class RecipeService {
 
   getRecipes() {
     return this.recipes.slice();
+  }
+
+  getRecipe(id: number) {
+    return this.recipes.slice()[id];
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
