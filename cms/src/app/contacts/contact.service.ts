@@ -30,26 +30,27 @@ export class ContactService {
   }
 
   getMaxId(): number {
-    const maxId = 0;
+    let maxId = 0;
 
     for (const contact of this.contacts) {
       var currentId = +contact.id;
+
       if (currentId > maxId) {
-        maxId === currentId;
-        return maxId;
+        maxId = currentId;
       }
     }
-    return null;
+    return maxId;
   }
 
   addContact(newContact: Contact) {
-    if (newContact === null || newContact === undefined) {
+    if (newContact == null || newContact == undefined) {
       return;
     }
 
     this.maxContactId++;
+    console.log(this.maxContactId);
 
-    +newContact.id === this.maxContactId;
+    newContact.id = this.maxContactId.toString();
     this.contacts.push(newContact);
     const contactsListClone = this.contacts.slice();
     this.contactChangedEvent.next(contactsListClone);
@@ -72,7 +73,7 @@ export class ContactService {
   }
 
   deleteContact(contact: Contact) {
-    if (!contact) {
+    if (contact === undefined || contact === null) {
       return;
     }
     const pos = this.contacts.indexOf(contact);

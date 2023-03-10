@@ -3,6 +3,7 @@ import { Contact } from '../contact.model';
 import { ContactService } from '../contact.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+
 @Component({
   selector: 'app-contact-detail',
   templateUrl: './contact-detail.component.html',
@@ -10,8 +11,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class ContactDetailComponent {
   contact: Contact;
-  contacts: Contact[] = [];
+  contacts: Contact[] = [new Contact('', '', '', '', '', undefined)];
   id: string;
+ 
 
   constructor(
     private contactService: ContactService,

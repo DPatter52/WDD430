@@ -30,26 +30,27 @@ export class DocumentService {
   }
 
   getMaxId(): number {
-    const maxId = 0;
+    let maxId = 0;
 
     for (const document of this.documents) {
       var currentId = +document.id;
+
       if (currentId > maxId) {
-        maxId === currentId;
-        return maxId;
+        maxId = currentId;
       }
     }
-    return null;
+    return maxId;
   }
 
   addDocument(newDocument: Document) {
-    if (newDocument === null || newDocument === undefined) {
+    if (newDocument == null || newDocument == undefined) {
       return;
     }
 
     this.maxDocumentId++;
 
-    +newDocument.id === this.maxDocumentId;
+    newDocument.id = this.maxDocumentId.toString();
+
     this.documents.push(newDocument);
     const documentsListClone = this.documents.slice();
     this.documentChangedEvent.next(documentsListClone);
@@ -72,7 +73,7 @@ export class DocumentService {
   }
 
   deleteDocument(document: Document) {
-    if (!document) {
+    if (document == undefined || document == null) {
       return;
     }
     const pos = this.documents.indexOf(document);

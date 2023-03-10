@@ -15,7 +15,7 @@ export class ContactEditComponent implements OnInit {
   groupContacts: Contact[] = [];
   editMode: boolean = false;
   id: string;
-  isInvalid = false
+  isInvalid = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,14 +23,15 @@ export class ContactEditComponent implements OnInit {
     private contactService: ContactService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      if (!this.id) {
+      if (this.id == undefined || this.id == null) {
         this.editMode = false;
         return;
       }
       this.originalContact = this.contactService.getContact(this.id);
+
       if (!this.originalContact) {
         return;
       }
@@ -40,10 +41,6 @@ export class ContactEditComponent implements OnInit {
         this.groupContacts = JSON.parse(JSON.stringify(this.groupContacts));
       }
     });
-  }
-
-  onCancel() {
-    this.router.navigate(['/contacts']);
   }
 
   onSubmit(form: NgForm) {
@@ -64,6 +61,10 @@ export class ContactEditComponent implements OnInit {
     this.router.navigate(['/contacts']);
   }
 
+  onCancel() {
+    this.router.navigate(['/contacts']);
+  }
+
   addToGroup($event: any) {
     const selectedContact: Contact = $event.dragData;
     const invalidGroupContact = this.isInvalidContact(selectedContact);
@@ -74,19 +75,18 @@ export class ContactEditComponent implements OnInit {
   }
 
   isInvalidContact(newContact: Contact) {
-    
     if (!newContact) {
-      return this.isInvalid = true;
+      return (this.isInvalid = true);
     }
     if (this.contact && newContact.id === this.contact.id) {
-      return this.isInvalid = true;
+      return (this.isInvalid = true);
     }
     for (let i = 0; i < this.groupContacts.length; i++) {
       if (newContact.id === this.groupContacts[i].id) {
-        return this.isInvalid = true;
+        return (this.isInvalid = true);
       }
     }
-    return this.isInvalid = false;
+    return (this.isInvalid = false);
   }
 
   onRemoveItem(index: number) {
