@@ -6,7 +6,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
 import { ContactItemComponent } from './contacts/contact-item/contact-item.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DocumentsComponent } from './documents/documents.component';
 import { DocumentListComponent } from './documents/document-list/document-list.component';
 import { DocumentItemComponent } from './documents/document-item/document-item.component';
@@ -19,6 +19,10 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
 import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
+import { MessageService } from './messages/message.service';
+import { DocumentService } from './documents/document.service';
+import { ContactService } from './contacts/contact.service';
+import {DndModule} from 'ng2-dnd';
 
 @NgModule({
   declarations: [
@@ -39,13 +43,17 @@ import { ContactEditComponent } from './contacts/contact-edit/contact-edit.compo
     DropdownDirective,
     DocumentEditComponent,
     ContactEditComponent
+    
   ],
   imports: [
     BrowserModule, 
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    DndModule.forRoot()
+
   ],
-  providers: [],
+  providers: [MessageService, DocumentService, ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Contact } from '../contact.model';
-import {
-  ActivatedRoute,
-  Params,
-  Router,
-} from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ContactService } from '../contact.service';
 
 @Component({
@@ -40,7 +36,7 @@ export class ContactEditComponent implements OnInit {
       this.editMode = true;
       this.contact = { ...this.originalContact };
       if (this.contact.group) {
-        this.groupContacts = { ...this.groupContacts };
+        this.groupContacts = JSON.parse(JSON.stringify(this.originalContact));
       }
     });
   }
@@ -65,5 +61,36 @@ export class ContactEditComponent implements OnInit {
     }
 
     this.router.navigate(['/contacts']);
+  }
+
+  addToGroup($event: any) {
+    const selectedContact: Contact = $event.dragData;
+    const invalidGroupContact = this.isInvalidContact(selectedContact);
+    if (invalidGroupContact) {
+      return;
+    }
+    this.groupContacts.push(selectedContact);
+  }
+
+  isInvalidContact(newContact: Contact) {
+    if (!newContact) {
+      return true;
+    }
+    if (this.contact && newContact.id === this.contact.id) {
+      return true;
+    }
+    for (let i = 0; i < this.groupContacts.length; i++) {
+      if (newContact.id === this.groupContacts[i].id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  onRemoveItem(index: number) {
+    if (index < 0 || index >= this.groupContacts.length) {
+      return;
+    }
+    this.groupContacts.splice(index, 1);
   }
 }
