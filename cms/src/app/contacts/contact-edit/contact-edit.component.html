@@ -78,6 +78,7 @@
       <div class="row">
         <div class="form-group">
           <label for="groupList">Group Contacts:</label>
+          <div class="alert alert-danger" *ngIf="isInvalid===true">Contact can not be added to the group. It is already in group or is the current contact.</div>
 
           <div
             class="row"
@@ -89,10 +90,10 @@
           >
             <div *ngFor="let contact of groupContacts; let i = index">
               <div>
-                <cms-contact-item
+                <app-contact-item
                   class="col-sm-11"
                   [contact]="contact"
-                ></cms-contact-item>
+                ></app-contact-item>
                 <button
                   class="btn btn-danger col-sm-2 deleteButton"
                   (click)="onRemoveItem(i)"
