@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Document } from '../document.model';
 import { DocumentService } from '../document.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { WindRefService } from 'src/app/wind-ref.service';
+import { WindRefService } from 'app/wind-ref.service';
 
 @Component({
   selector: 'app-document-detail',
