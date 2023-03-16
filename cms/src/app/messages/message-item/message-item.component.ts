@@ -3,7 +3,6 @@ import { ContactService } from 'app/contacts/contact.service';
 import { Message } from '../message.model';
 import { Contact } from 'app/contacts/contact.model';
 
-
 @Component({
   selector: 'app-message-item',
   templateUrl: './message-item.component.html',
