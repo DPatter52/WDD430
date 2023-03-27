@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Document } from '../document.model';
 import { DocumentService } from '../document.service';
 import { OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-document-list',
@@ -11,14 +12,16 @@ import { OnInit } from '@angular/core';
 export class DocumentListComponent implements OnInit {
   documents: Document[] = [];
 
-  constructor(private documentService: DocumentService) {}
+  private subscription!: Subscription;
+
+  constructor(private documentService: DocumentService) { }
 
   ngOnInit() {
-    this.documentService.documentChangedEvent.subscribe(
-      (documents: Document[]) => {
-        this.documents = documents;
-      }
-    );
-    this.documents = this.documentService.getDocuments();
+    this.documentService.getDocuments();
+    this.subscription = this.documentService.documentChangedEvent
+    .subscribe((documentsList: Document[]) => {
+      this.documents = documentsList;
+    })
   }
+
 }

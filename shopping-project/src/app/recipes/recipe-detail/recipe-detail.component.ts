@@ -16,7 +16,7 @@ export class RecipeDetailComponent {
     private recipeService: RecipeService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -32,7 +32,7 @@ export class RecipeDetailComponent {
   onEditRecipe() {
     this.router.navigate(['edit'], { relativeTo: this.route });
   }
-  
+
   onDeleteRecipe() {
     this.recipeService.deleteRecipe(this.id);
     this.router.navigate(['/recipes']);

@@ -23,6 +23,8 @@ import { MessageService } from './messages/message.service';
 import { DocumentService } from './documents/document.service';
 import { ContactService } from './contacts/contact.service';
 import {DndModule} from 'ng2-dnd';
+import { ContactsFilterPipe } from './contacts/contacts-filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import {DndModule} from 'ng2-dnd';
     MessageEditComponent,
     DropdownDirective,
     DocumentEditComponent,
-    ContactEditComponent
+    ContactEditComponent,
+    ContactsFilterPipe
     
   ],
   imports: [
@@ -50,7 +53,8 @@ import {DndModule} from 'ng2-dnd';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    DndModule.forRoot()
+    DndModule.forRoot(),
+    HttpClientModule,
 
   ],
   providers: [MessageService, DocumentService, ContactService],
