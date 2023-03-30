@@ -4,6 +4,7 @@ import { Message } from './message.model';
 import { MOCKMESSAGES } from './MOCKMESSAGES';
 import { Subject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -15,19 +16,49 @@ export class MessageService {
   constructor(private httpClient: HttpClient) {
     this.messages = MOCKMESSAGES;
   }
-  // Old Method
-  // getMessages(){
-  //   return this.messages.slice();
+
+  sortAndSend() {
+    this.messages.sort((a, b) => {
+      if (a.sender < b.sender) {
+        return -1;
+      }
+      if (a.sender > b.sender) {
+        return 1;
+      }
+      return 0;
+    });
+    this.messageChangedEvent.next(this.messages.slice());
+  }
+
+  
+  // getMessages(): Observable<Message[]> {
+  //   //return this.messages.slice();
+  //   return this.httpClient
+  //     .get<Message[]>('http://localhost:3000/messages')
+  //     .pipe(
+  //       tap((messages: Message[]) => {
+  //         this.messages = messages;
+  //         console.log(Message);
+  //         this.maxMessageId = this.getMaxId();
+  //         //console.log(this.getMaxId)
+  //         this.messages.sort((a, b) => a.subject.localeCompare(b.subject));
+  //         this.messageChangedEvent.next(this.messages.slice());
+  //       }),
+  //       catchError((error) => {
+  //         console.error(error);
+  //         return throwError(error);
+  //       })
+  //     );
   // }
 
   getMessages() {
     this.httpClient
-      .get('https://wdd430-server-default-rtdb.firebaseio.com/messages.json')
+      .get('http://localhost:3000/messages')
       .subscribe(
         (messages: Message[]) => {
           this.messages = messages;
           this.maxMessageId = this.getMaxId();
-          this.messages.sort((a, b) => (a.id > b.id ? 1 : -1));
+          this.messages.sort((a, b) => (a.sender > b.sender ? 1 : -1));
           this.messageChangedEvent.next(this.messages.slice());
         },
         (error: any) => {
@@ -81,17 +112,30 @@ export class MessageService {
   }
 
   addMessage(message: Message) {
-    if (message == null || message == undefined) {
+    if (!message) {
       return;
     }
 
-    this.maxMessageId++;
+    message.id = '';
 
-    message.id = this.maxMessageId.toString();
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.messages.push(message);
-    const messagesListClone = this.messages.slice();
+    this.httpClient
+      .post<{ message: String; messages: Message }>(
+        'http://localhost:3000/messages',
+        message,
+        { headers: headers }
+      )
+      .subscribe((responseData) => {
+        this.messages.push(responseData.messages);
+        this.sortAndSend();
+      });
 
-    this.storeMessages(messagesListClone);
+    // --OLD CODE--
+    // this.maxMessageId++;
+    // message.id = this.maxMessageId.toString();
+    // this.messages.push(message);
+    // const messagesListClone = this.messages.slice();
+    // this.storeMessages(messagesListClone);
   }
 }

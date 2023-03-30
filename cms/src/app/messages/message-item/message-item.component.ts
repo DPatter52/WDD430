@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { ContactService } from 'app/contacts/contact.service';
 import { Message } from '../message.model';
 import { Contact } from 'app/contacts/contact.model';
+
 
 @Component({
   selector: 'app-message-item',
@@ -9,8 +10,9 @@ import { Contact } from 'app/contacts/contact.model';
   styleUrls: ['./message-item.component.css'],
 })
 export class MessageItemComponent {
-  messageSender: string;
+ @Output() messageSender: string;
   @Input() message: Message;
+ 
 
   constructor(private contactService: ContactService) {}
 

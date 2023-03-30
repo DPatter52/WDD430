@@ -1,4 +1,5 @@
 // Get dependencies
+var mongoose = require('mongoose');
 var express = require("express");
 var path = require("path");
 var http = require("http");
@@ -14,7 +15,24 @@ const messageRoutes = require("./server/routes/messages");
 const contactRoutes = require("./server/routes/contacts");
 const documentRoutes = require("./server/routes/documents");
 
+
+// establish a connection to the mongo database
+mongoose.connect('mongodb+srv://dbUser:dbUserPassword@cluster0.csn3zdz.mongodb.net/cms',
+   { useNewUrlParser: true }, (err, res) => {
+      if (err) {
+         console.log('Connection failed: ' + err);
+      }
+      else {
+         console.log('Connected to database!');
+      }
+   }
+);
+
 var app = express(); // create an instance of express
+
+const cors = require('cors') 
+// use CORS
+app.use(cors());
 
 // Tell express to use the following parsers for POST data
 app.use(bodyParser.json());
