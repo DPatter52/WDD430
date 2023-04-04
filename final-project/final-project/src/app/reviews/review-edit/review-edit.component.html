@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+      <form id="document-edit">
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="book">Book</label>
+            <input
+              type="text"
+              id="subject"
+              class="form-control"
+              size="120"
+              max="120"
+              #subject
+            />
+          </div>
+  
+          <div class="col-sm-12 form-group">
+            <label for="review">Review</label>
+            <input
+              type="text"
+              id="review"
+              class="form-control"
+              max="255"
+              size="120"
+              #review
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success" type="submit" (click)="onSendReview()">Send</button>
+            <button class="btn btn-danger" type="button" (click)="onClear()">Clear</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
