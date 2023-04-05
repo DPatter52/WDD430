@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Book } from '../book.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BookService } from '../book.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-book-edit',
@@ -14,6 +15,7 @@ export class BookEditComponent implements OnInit {
   editMode: boolean = false;
   book: Book;
   originalBook: Book;
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -44,19 +46,17 @@ export class BookEditComponent implements OnInit {
       value.id,
       value.name,
       value.description,
-      value.url
+      value.imageUrl
     );
     if (this.editMode) {
       this.bookService.updateBook(this.originalBook, newBook);
     } else {
       this.bookService.addBook(newBook);
     }
-
-    this.router.navigate(['/books']);
+    this.router.navigate(['/books'])
   }
 
   onCancel() {
     this.router.navigate(['/books'], { relativeTo: this.route });
   }
 }
-

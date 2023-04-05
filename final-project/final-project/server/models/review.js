@@ -5,6 +5,7 @@ const reviewSchema = mongoose.Schema({
   book: { type: String},
   msgText: { type: String, required: true },
   sender: { type: String },
+  date: {type: String }
 });
 
 module.exports = mongoose.model("Review", reviewSchema);

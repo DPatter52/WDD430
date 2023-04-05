@@ -4,9 +4,12 @@ const sequenceGenerator = require("./sequenceGenerator");
 const Book = require("../models/book");
 
 router.get("/", async (req, res, next) => {
-  Book.find({})
+  Book.find()
     .then((books) => {
-      res.status(200).send(books);
+      res.status(200).json({
+        message: "Books fetched successfully!",
+        books: books,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -24,21 +27,22 @@ router.post("/", async (req, res, next) => {
     imageUrl: req.body.imageUrl,
   });
 
-  book
-    .save()
-    .then((createdBook) => {
+  try{
+    const createdBook = await book.save();
+    
       res.status(201).json({
         message: "Book added successfully",
         book: createdBook,
+      
       });
-    })
-    .catch((error) => {
+    }catch(error) {
       res.status(500).json({
         message: "An error occurred",
         error: error,
       });
+    }
     });
-});
+
 
 router.put("/:id", (req, res, next) => {
   Book.findOne({ id: req.params.id })

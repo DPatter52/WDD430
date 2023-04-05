@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReviewService } from './reviews/review.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BookService } from './books/book.service';
+import { DateDirective } from 'src/shared/date.directive';
+
 
 
 
@@ -34,6 +36,7 @@ import { BookService } from './books/book.service';
     BookEditComponent,
     BookItemComponent,
     BookListComponent,
+    DateDirective
 
   ],
   imports: [

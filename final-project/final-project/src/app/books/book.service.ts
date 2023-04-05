@@ -37,7 +37,6 @@ export class BookService {
           this.books = booksData.books;
           this.maxBookId = this.getMaxId();
           this.books.sort((a, b) => (a.name > b.name ? 1 : -1));
-          console.log(booksData);
           this.bookChangedEvent.next(this.books.slice());
         },
         (error: any) => {
@@ -77,7 +76,7 @@ export class BookService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     this.httpClient
-      .post<{ book: String; books: Book }>(
+      .post<{ message: String; books: Book }>(
         'http://localhost:3000/books',
         book,
         { headers: headers }

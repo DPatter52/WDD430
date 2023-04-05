@@ -3,6 +3,7 @@ export class Review {
     public id: string, 
     public book: string, 
     public msgText: string, 
-    public sender: string
+    public sender: string,
+    public date: string
     ) {}
 }

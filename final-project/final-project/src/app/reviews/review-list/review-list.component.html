@@ -1,21 +1,21 @@
-<div class="row">
-    <div class="col-md-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="row pad-left-right">
-            <span class="title pull-left">Reviews</span>
-          </div>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-xs-12">
-              <app-review-item *ngFor="let reviewEl of reviews" [review]="reviewEl"></app-review-item>
-            </div>
-          </div>
-        </div>
-        <div class="panel-footer">
-          <app-review-edit (addReviewEvent)="onAddReview($event)"></app-review-edit>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1 class="text-center mb-4">Review Forum Posts</h1>
+      <ul class="list-group">
+        <app-review-item
+          *ngFor="let reviewEl of reviews"
+          [review]="reviewEl"
+        ></app-review-item>
+      </ul>
+
+      <hr>
+
+      <div class="mt-4">
+        <app-review-edit
+          (addReviewEvent)="onAddReview($event)"
+        ></app-review-edit>
       </div>
     </div>
   </div>
+</div>

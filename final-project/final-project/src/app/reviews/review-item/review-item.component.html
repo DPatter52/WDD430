@@ -1,7 +1,25 @@
-<a  class="list-group-item clearfix">
-    <div class="">
-      <span class="reviewHeader">{{ reviewSender }}</span>
-      
-      <div class="reviewText">{{ review.msgText }}</div>
-    </div>
-  </a>
+<div class="card forum-post">
+  <div class="card-header bg-primary text-white forum-post-header">
+    <h3 class="card-title mb-0 forum-post-sender">{{ review.sender }}</h3>
+  </div>
+  
+  <div class="card-body forum-post-body">
+    <h4 class="card-subtitle mb-2 text-body-secondary" style="font-size: larger;">{{ review.book }}</h4>
+  
+    <p class="card-text forum-post-text">{{ review.msgText }}</p>
+  </div>
+  
+  <div class="card-footer bg-light forum-post-footer">
+    <button type="button" class="btn btn-outline-primary btn-sm mr-2">
+      <i class="fas fa-thumbs-up"></i> Like
+    </button>
+    <a class="btn btn-outline-primary btn-sm mr-2">
+      <i class="fas fa-reply"></i> Reply
+    </a>
+    <span class="text-muted float-right">{{ review.date }}</span>
+  </div>
+</div>
+
+
+
+

@@ -1,10 +1,27 @@
-<a
-  RouterLinkActive="active"
-  [routerLink]="[book.id]"
-  class="list-group-item clearfix bookDiv"
-  style="cursor: pointer"
-  (click)="onSelected()"
->
-  {{ book.name }}
-</a>
+<div class="card mb-3">
+  <a
+    RouterLinkActive="active"
+    [routerLink]="[book.id]"
+    class="list-group-item clearfix bookDiv"
+    style="cursor: pointer"
+    (click)="onSelected()"
+    ><div class="row no-gutters">
+      <div class="col-md-4">
+        <img
+          src="{{ book.imageUrl }}"
+          alt="{{ book.name }}"
+          class="img-responsive"
+          style="max-height: 100px"
+        />
+      </div>
 
+      <div class="col-md-8">
+        <div class="card-body">
+          
+          <h5 class="card-title">{{ book.name }}</h5>
+          <p class="card-text">{{ book.description }}</p>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

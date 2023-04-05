@@ -29,9 +29,9 @@ export class ReviewService {
   }
 
   getReviews() {
-    return this.httpClient.get('http://localhost:3000/reviews').subscribe(
-      (reviews: Review[]) => {
-        this.reviews = reviews;
+    return this.httpClient.get<{message: string; reviews: Review[]}>('http://localhost:3000/reviews').subscribe(
+      (reviewData) => {
+        this.reviews = reviewData.reviews;
         this.maxReviewId = this.getMaxId();
         this.reviews.sort((a, b) => (a.sender > b.sender ? 1 : -1));
         this.reviewChangedEvent.next(this.reviews.slice());

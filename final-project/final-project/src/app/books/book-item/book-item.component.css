@@ -1,0 +1,28 @@
+.list-group-item:hover {
+    text-decoration: none;
+    background-color: gainsboro;
+}
+
+.text {
+    text-decoration: none;
+}
+
+.col-md-4 {
+ width: auto;
+ padding: 0;
+}
+
+.col-md-8 {
+    padding: 0;
+}
+
+.card-header {
+    padding: 3px;
+}
+
+.card-body {
+    margin: 5px;
+    border-radius: 15px 15px 15px 0px;
+    background-color: gainsboro;
+    
+}

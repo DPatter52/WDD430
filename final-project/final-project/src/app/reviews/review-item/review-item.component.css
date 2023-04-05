@@ -1,0 +1,12 @@
+.card-footer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.card-text {
+   
+    border-radius: 15px 15px 15px 0px;
+    padding: 20px;
+    background-color: rgb(219, 219, 219);
+}

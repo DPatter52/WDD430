@@ -4,9 +4,12 @@ const sequenceGenerator = require("./sequenceGenerator");
 const Review = require("../models/review");
 
 router.get("/", async (req, res, next) => {
-  Review.find({})
+  Review.find()
     .then((reviews) => {
-      res.status(200).send(reviews);
+      res.status(200).json({
+        message: "Reviews fetched successfully!",
+        reviews: reviews,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -22,6 +25,7 @@ router.post("/", async (req, res, next) => {
     book: req.body.book,
     msgText: req.body.msgText,
     sender: req.body.sender,
+    date: req.body.date
   });
 
   review
@@ -46,6 +50,7 @@ router.put("/:id", (req, res, next) => {
       review.book = req.body.book;
       review.msgText = req.body.msgText;
       review.sender = req.body.sender;
+      review.date = req.body.date;
 
       Review.updateOne({ id: req.params.id }, review)
         .then((result) => {
