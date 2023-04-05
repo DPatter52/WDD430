@@ -8,19 +8,19 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 import { ReviewListComponent } from './reviews/review-list/review-list.component';
 
-import { FavoritesComponent } from './favorites/favorites.component';
-import { FavoriteEditComponent } from './favorites/favorite-edit/favorite-edit.component';
-import { FavoriteDetailComponent } from './favorites/favorite-detail/favorite-detail.component';
+import { BooksComponent } from './books/books.component';
+import { BookEditComponent } from './books/book-edit/book-edit.component';
+import { BookDetailComponent } from './books/book-detail/book-detail.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/favorites', pathMatch: 'full' },
+  { path: '', redirectTo: '/books', pathMatch: 'full' },
   {
-    path: 'favorites',
-    component: FavoritesComponent,
+    path: 'books',
+    component: BooksComponent,
     children: [
-      { path: 'new', component: FavoriteEditComponent },
-      { path: ':id', component: FavoriteDetailComponent },
-      { path: ':id/edit', component: FavoriteEditComponent },
+      { path: 'new', component: BookEditComponent },
+      { path: ':id', component: BookDetailComponent },
+      { path: ':id/edit', component: BookEditComponent },
     ],
   },
 

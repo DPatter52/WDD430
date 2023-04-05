@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HeaderComponent } from './header/header.component';
 import { DropdownDirective } from 'src/shared/dropdown.directive';
 import { AppComponent } from './app.component';
-import { FavoritesComponent } from './favorites/favorites.component';
+import { BooksComponent } from './books/books.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ReviewEditComponent } from './reviews/review-edit/review-edit.component';
 import { ReviewItemComponent } from './reviews/review-item/review-item.component';
@@ -13,16 +13,16 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserItemComponent } from './users/user-item/user-item.component';
 import { UserListComponent } from './users/user-list/user-list.component';
-import { FavoriteDetailComponent } from './favorites/favorite-detail/favorite-detail.component';
-import { FavoriteEditComponent } from './favorites/favorite-edit/favorite-edit.component';
-import { FavoriteItemComponent } from './favorites/favorite-item/favorite-item.component';
-import { FavoriteListComponent } from './favorites/favorite-list/favorite-list.component';
+import { BookDetailComponent } from './books/book-detail/book-detail.component';
+import { BookEditComponent } from './books/book-edit/book-edit.component';
+import { BookItemComponent } from './books/book-item/book-item.component';
+import { BookListComponent } from './books/book-list/book-list.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReviewService } from './reviews/review.service';
 import { UserService } from './users/user.service';
 import { AppRoutingModule } from './app-routing.module';
-import { FavoriteService } from './favorites/favorite.service';
+import { BookService } from './books/book.service';
 
 
 
@@ -31,7 +31,7 @@ import { FavoriteService } from './favorites/favorite.service';
     AppComponent,
     HeaderComponent,
     DropdownDirective,
-    FavoritesComponent,
+    BooksComponent,
     ReviewsComponent,
     ReviewEditComponent,
     ReviewItemComponent,
@@ -41,10 +41,10 @@ import { FavoriteService } from './favorites/favorite.service';
     UserEditComponent,
     UserItemComponent,
     UserListComponent,
-    FavoriteDetailComponent,
-    FavoriteEditComponent,
-    FavoriteItemComponent,
-    FavoriteListComponent,
+    BookDetailComponent,
+    BookEditComponent,
+    BookItemComponent,
+    BookListComponent,
 
   ],
   imports: [
@@ -54,7 +54,7 @@ import { FavoriteService } from './favorites/favorite.service';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [ReviewService, UserService, FavoriteService],
+  providers: [ReviewService, UserService, BookService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

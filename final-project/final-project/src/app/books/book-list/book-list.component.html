@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row pad-left-right">
+        <span class="pull-left title">Books</span>
+        <a routerLink="new" class="btn btn-success pull-right">Add book</a>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="center-panel">
+        <app-book-item *ngFor="let bookEl of books"
+        [book]="bookEl"></app-book-item>
+      </div>
+    </div>
+  
+  </div>
