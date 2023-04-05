@@ -8,10 +8,12 @@ import { Subject } from 'rxjs';
 })
 export class ReviewService {
   reviewChangedEvent = new Subject<Review[]>();
-  private reviews: Review[] = [];
+  reviews: Review[] = [];
   maxReviewId: number;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    this.maxReviewId = this.getMaxId();
+  }
 
   sortAndSend() {
     this.reviews.sort((a, b) => {
@@ -27,7 +29,7 @@ export class ReviewService {
   }
 
   getReviews() {
-    this.httpClient.get('http://localhost:3000/reviews').subscribe(
+    return this.httpClient.get('http://localhost:3000/reviews').subscribe(
       (reviews: Review[]) => {
         this.reviews = reviews;
         this.maxReviewId = this.getMaxId();
@@ -40,27 +42,12 @@ export class ReviewService {
     );
   }
 
-  storeReviews(reviews: Review[]) {
-    const reviewsString = JSON.stringify(reviews);
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-
-    this.httpClient
-      .put(
-        'https://wdd430-server-default-rtdb.firebaseio.com/reviews.json',
-        reviewsString,
-        { headers }
-      )
-      .subscribe(
-        (response) => {
-          console.log('reviews have been saved', response);
-        },
-        (error) => {
-          console.error('Error saving reviews: ', error);
-        }
-      );
-    this.reviewChangedEvent.next(this.reviews.slice());
+  getReview(id: string) {
+    for (const review of this.reviews)
+      if (review.id === id) {
+        return review;
+      }
+    return null;
   }
 
   getMaxId(): number {
@@ -74,14 +61,6 @@ export class ReviewService {
       }
     }
     return maxId;
-  }
-
-  getReview(id: string) {
-    for (const review of this.reviews)
-      if (review.id === id) {
-        return review;
-      }
-    return null;
   }
 
   addReview(review: Review) {

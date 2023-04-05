@@ -6,13 +6,13 @@ var http = require("http");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var ejs = require("ejs");
 
 // import the routing file to handle the default (index) route
 var index = require("./server/routes/app");
 
 // ... ADD CODE TO IMPORT YOUR ROUTING FILES HERE ...
-const reveiwRoutes = require("./server/routes/reviews");
-const userRoutes = require("./server/routes/users");
+const reviewRoutes = require("./server/routes/reviews");
 const bookRoutes = require("./server/routes/books");
 
 // establish a connection to the mongo database
@@ -29,6 +29,8 @@ mongoose.connect(
 );
 
 var app = express(); // create an instance of express
+
+// app.set("view engine", "ejs"); // setting view engine
 
 const cors = require("cors");
 // use CORS
@@ -61,14 +63,14 @@ app.use((req, res, next) => {
 
 // Tell express to use the specified director as the
 // root directory for your web site
-app.use(express.static(path.join(__dirname, "dist/cms")));
+app.use(express.static(path.join(__dirname, "dist/final-project")));
 
 // Tell express to map the default route ('/') to the index route
 app.use("/", index);
 
 // ... ADD YOUR CODE TO MAP YOUR URL'S TO ROUTING FILES HERE ...
-app.use("/reveiws", reveiwRoutes);
-app.use("/users", userRoutes);
+app.use("/reviews", reviewRoutes);
+
 app.use("/books", bookRoutes);
 
 // Tell express to map all other non-defined routes back to the index page

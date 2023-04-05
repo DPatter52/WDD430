@@ -4,12 +4,14 @@ const sequenceGenerator = require("./sequenceGenerator");
 const Book = require("../models/book");
 
 router.get("/", async (req, res, next) => {
-  try {
-    const books = await Book.find();
-    return res.status(200).json(books);
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
+  Book.find({})
+    .then((books) => {
+      res.status(200).send(books);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ title: "An exception occurred", err });
+    });
 });
 
 router.post("/", async (req, res, next) => {
@@ -19,7 +21,7 @@ router.post("/", async (req, res, next) => {
     id: maxBookId,
     name: req.body.name,
     desciption: req.body.desciption,
-    url: req.body.url,
+    imageUrl: req.body.imageUrl,
   });
 
   book
@@ -43,7 +45,7 @@ router.put("/:id", (req, res, next) => {
     .then((book) => {
       book.name = req.body.name;
       book.description = req.body.description;
-      book.url = req.body.url;
+      book.imageUrl = req.body.imageUrl;
 
       Book.updateOne({ id: req.params.id }, book)
         .then((result) => {

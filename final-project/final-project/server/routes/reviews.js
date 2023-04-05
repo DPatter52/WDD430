@@ -4,12 +4,14 @@ const sequenceGenerator = require("./sequenceGenerator");
 const Review = require("../models/review");
 
 router.get("/", async (req, res, next) => {
-  try {
-    const reviews = await Review.find();
-    return res.status(200).json(reviews);
-  } catch (error) {
-    return res.status(500).json({ error: error.review });
-  }
+  Review.find({})
+    .then((reviews) => {
+      res.status(200).send(reviews);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ title: "An exception occurred", err });
+    });
 });
 
 router.post("/", async (req, res, next) => {
@@ -17,7 +19,7 @@ router.post("/", async (req, res, next) => {
 
   const review = new Review({
     id: maxReviewId,
-    subject: req.body.subject,
+    book: req.body.book,
     msgText: req.body.msgText,
     sender: req.body.sender,
   });
@@ -41,7 +43,7 @@ router.post("/", async (req, res, next) => {
 router.put("/:id", (req, res, next) => {
   Review.findOne({ id: req.params.id })
     .then((review) => {
-      review.subject = req.body.subject;
+      review.book = req.body.book;
       review.msgText = req.body.msgText;
       review.sender = req.body.sender;
 

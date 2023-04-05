@@ -2,9 +2,9 @@ var mongoose = require("mongoose");
 
 const reviewSchema = mongoose.Schema({
   id: { type: String, required: true },
-  book: { type: mongoose.Schema.Types.ObjectId, ref: "Book"},
+  book: { type: String},
   msgText: { type: String, required: true },
-  sender: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  sender: { type: String },
 });
 
 module.exports = mongoose.model("Review", reviewSchema);

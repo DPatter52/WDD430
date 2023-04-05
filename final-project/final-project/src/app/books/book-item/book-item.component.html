@@ -1,1 +1,10 @@
+<a
+  RouterLinkActive="active"
+  [routerLink]="[book.id]"
+  class="list-group-item clearfix bookDiv"
+  style="cursor: pointer"
+  (click)="onSelected()"
+>
+  {{ book.name }}
+</a>
 
