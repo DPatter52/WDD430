@@ -23,7 +23,7 @@ router.post("/", async (req, res, next) => {
   const book = new Book({
     id: maxBookId,
     name: req.body.name,
-    desciption: req.body.desciption,
+    description: req.body.description,
     imageUrl: req.body.imageUrl,
   });
 
