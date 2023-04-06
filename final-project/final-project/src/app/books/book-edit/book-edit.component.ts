@@ -15,7 +15,6 @@ export class BookEditComponent implements OnInit {
   editMode: boolean = false;
   book: Book;
   originalBook: Book;
-  
 
   constructor(
     private route: ActivatedRoute,
@@ -53,7 +52,7 @@ export class BookEditComponent implements OnInit {
     } else {
       this.bookService.addBook(newBook);
     }
-    this.router.navigate(['/books'])
+    this.router.navigate(['/']) ;
   }
 
   onCancel() {

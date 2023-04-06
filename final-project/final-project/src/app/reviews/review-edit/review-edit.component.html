@@ -53,7 +53,7 @@
 
 <div class="card forum-post">
   <div class="card-body">
-    <form id="document-edit">
+    <form onsubmit="location.reload()" id="document-edit">
       <div class="form-group">
         <label for="book">Book Title: </label>
         <input type="text" id="book" class="form-control" placeholder="The Last Book in the Universe" #book>
@@ -63,8 +63,8 @@
         <input type="text" id="name" class="form-control" placeholder="Judy B. Jones" #name>
       </div>
       <div class="form-group">
-        <label for="review">Review: </label>
-        <textarea id="review" class="form-control" rows="3" placeholder="I wouldn't read this book again even if it was the last book in the universe!" #review></textarea>
+        <label for="review" >Review: </label>
+        <textarea charset="UTF-8" id="review" class="form-control" rows="3" placeholder="I wouldn't read this book again even if it was the last book in the universe!" #review></textarea>
       </div>
       <button class="btn btn-primary" type="submit" (click)="onSendReview()">Post</button>
       <button class="btn btn-danger" type="button" (click)="onClear()">Clear</button>

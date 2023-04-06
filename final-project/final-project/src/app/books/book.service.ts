@@ -54,18 +54,20 @@ export class BookService {
   }
 
   getMaxId(): number {
-    let maxId = 0;
+    let maxId = 1;
+    let currentId = 0;
 
     for (const book of this.books) {
-      var currentId = +book.id;
+      currentId == parseInt(book.id);
 
       if (currentId > maxId) {
         maxId = currentId;
       }
+      console.log('getMaxId is working on Books');
     }
     return maxId;
   }
-  
+
   addBook(book: Book) {
     if (!book) {
       return;

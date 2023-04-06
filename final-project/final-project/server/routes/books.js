@@ -27,6 +27,8 @@ router.post("/", async (req, res, next) => {
     imageUrl: req.body.imageUrl,
   });
 
+  
+
   try{
     const createdBook = await book.save();
     
@@ -35,6 +37,7 @@ router.post("/", async (req, res, next) => {
         book: createdBook,
       
       });
+      console.log(book)
     }catch(error) {
       res.status(500).json({
         message: "An error occurred",

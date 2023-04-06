@@ -21,11 +21,6 @@ const appRoutes: Routes = [
   },
 
   { path: 'reviews', component: ReviewListComponent },
-
-  // {
-  //   path: 'index',
-
-  // }
 ];
 
 @NgModule({

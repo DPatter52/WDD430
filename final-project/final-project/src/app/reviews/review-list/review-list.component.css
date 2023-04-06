@@ -1,3 +1,7 @@
 .container {
   padding: 20px;
 }
+
+app-review-item {
+  margin-bottom: 20px;
+}
